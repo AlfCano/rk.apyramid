@@ -1,0 +1,19 @@
+Package: rk.apyramid
+Type: Package
+Title: An RKWard plugin to create population pyramids from survey or
+        dataframe objects using the 'apyramid' package. Supports
+        automatic binning and factor conversion.
+Version: 0.0.6
+Date: 2026-01-23
+Author: Alfonso Cano
+Maintainer: Alfonso Cano <alfonso.cano@correo.buap.mx>
+Enhances: rkward
+Description: An RKWard plugin to create population pyramids from survey
+        or dataframe objects using the 'apyramid' package. Supports
+        automatic binning and factor conversion.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyLoad: yes
+URL: https://github.com/AlfCano/rk.apyramid
+Authors@R: person(given="Alfonso", family="Cano",
+        email="alfonso.cano@correo.buap.mx", role=c("aut", "cre"))

@@ -1,0 +1,112 @@
+<!DOCTYPE rkplugin >
+<document>
+	<!--
+		this code was generated using the rkwarddev package.
+	perhaps don't make changes here, but in the rkwarddev script instead!
+	-->
+	<code file="AgePyramid.js" />
+	<help file="AgePyramid.rkh" />
+	<!--
+		<dependencies>
+		</dependencies>
+	-->
+	<logic>
+		<!--
+			<convert id="!edit!" sources="!edit!" mode="equals" standard="!edit!" />
+		-->
+		<!--
+			<connect governor="!edit!.state" client="!edit!.enabled" />
+		-->
+	</logic>
+	<dialog label="Population Pyramid (apyramid)">
+		<row id="row_vVVDOSDFAG">
+			<varselector id="pyr_selector" />
+			<column id="clm_tVVDOSDFAG">
+				<tabbook>
+					<tab label="Variables" id="tab_Variabls">
+						<column id="clm_vDOSDFAGVA">
+							<varslot id="pyr_data" label="Data Object (Survey or Data Frame)" source="pyr_selector" classes="data.frame survey.design tbl_svy" required="true" />
+							<varslot id="pyr_age" label="Age Group Variable" source="pyr_selector" required="true" />
+							<frame id="frm_rAVPUMFCFB">
+								<radio id="age_trans_mode" label="Age Variable Processing">
+									<option label="Use as is (Must be Factor)" value="none" checked="true" />
+									<option label="Convert to Factor (as.factor)" value="factor" />
+									<option label="Bin Numeric Variable (cut)" value="bin" />
+								</radio>
+								<spinbox label="Bin Width (Years)" id="bin_width" initial="5" min="1" max="100" />
+							</frame>
+							<varslot id="pyr_split" label="Split by (Sex/Gender/Region)" source="pyr_selector" required="true" />
+							<varslot id="pyr_stack" label="Stack by (Optional subgroup)" source="pyr_selector" />
+						</column>
+					</tab>
+					<tab label="Settings" id="tab_Settings">
+						<column id="clm_cSPC1RNA1S">
+							<checkbox id="pyr_prop" label="Show Proportions (instead of Counts)" value="1" />
+							<checkbox id="pyr_narm" label="Remove NA values" value="1" checked="true" />
+							<checkbox id="pyr_mid" label="Show Midpoint lines" value="1" />
+						</column>
+					</tab>
+					<tab label="Labels" id="tab_Labels">
+						<column id="clm_iPTPSXLCPY">
+							<input label="Plot Title" id="plot_title" />
+							<input label="Plot Subtitle" id="plot_subtitle" />
+							<input label="X-axis Label (Count/Prop)" id="plot_xlab" />
+							<input label="Y-axis Label (Age)" id="plot_ylab" />
+							<input label="Legend Title" id="plot_legend_title" />
+							<spinbox label="Wrap Legend Title at (chars, 0 to disable)" id="plot_leg_wrap" min="0" max="100" />
+							<input label="Plot Caption" id="plot_caption" />
+						</column>
+					</tab>
+					<tab label="Theme" id="tab_Theme">
+						<column id="clm_sBFS16650F">
+							<spinbox label="Base Font Size (pts)" id="theme_base_size" initial="16" min="6" max="50" />
+							<frame label="Fine Tune Element Sizes (Multiplier)" id="frm_FnTnElSM">
+								<spinbox label="Plot Title (Relative size)" id="rel_title" initial="1.2" min="0.1" max="5" />
+								<spinbox label="Axis Labels (Relative size)" id="rel_axis_title" initial="0.9" min="0.1" max="5" />
+								<spinbox label="Axis Ticks/Text (Relative size)" id="rel_axis_text" initial="0.9" min="0.1" max="5" />
+								<spinbox label="Legend Text (Relative size)" id="rel_legend" initial="0.8" min="0.1" max="5" />
+							</frame>
+							<dropdown id="theme_legend_pos" label="Legend Position">
+								<option label="Bottom" value="bottom" checked="true" />
+								<option label="Top" value="top" />
+								<option label="Right" value="right" />
+								<option label="Left" value="left" />
+								<option label="None" value="none" />
+							</dropdown>
+							<dropdown id="theme_palette" label="Color Palette">
+								<option label="Default (apyramid)" value="default" checked="true" />
+								<option label="Viridis (Default)" value="viridis" />
+								<option label="Viridis: Magma" value="magma" />
+								<option label="Viridis: Inferno" value="inferno" />
+								<option label="Viridis: Plasma" value="plasma" />
+								<option label="Viridis: Cividis" value="cividis" />
+								<option label="Brewer: Set1" value="set1" />
+								<option label="Brewer: Set2" value="set2" />
+								<option label="Brewer: Set3" value="set3" />
+								<option label="Brewer: Dark2" value="dark2" />
+								<option label="Brewer: Accent" value="accent" />
+								<option label="Brewer: Paired" value="paired" />
+								<option label="Brewer: Pastel1" value="pastel1" />
+								<option label="Brewer: Pastel2" value="pastel2" />
+								<option label="Grayscale" value="grey" />
+							</dropdown>
+						</column>
+					</tab>
+					<tab label="Output" id="tab_Output">
+						<column id="clm_dDPNGPNGSV">
+							<dropdown id="device_type" label="Device type">
+								<option label="PNG" value="PNG" checked="true" />
+								<option label="SVG" value="SVG" />
+								<option label="JPG" value="JPG" />
+							</dropdown>
+							<spinbox label="Width (px)" id="dev_width" initial="800" min="100" max="4000" />
+							<spinbox label="Height (px)" id="dev_height" initial="600" min="100" max="4000" />
+							<spinbox label="Resolution (ppi)" id="dev_res" initial="150" min="50" max="600" />
+						</column>
+					</tab>
+				</tabbook>
+				<preview label="Preview" id="prv_Preview" />
+			</column>
+		</row>
+	</dialog>
+</document>

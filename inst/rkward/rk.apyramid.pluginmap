@@ -1,0 +1,82 @@
+<!DOCTYPE
+	rkpluginmap
+>
+<document
+	base_prefix=""
+	namespace="AgePyramid"
+	id="AgePyramid_rkward"
+	po_id="AgePyramid_rkward"
+	priority="medium"
+>
+	<!--
+		this code was generated using the rkwarddev package.
+	perhaps don't make changes here, but in the rkwarddev script instead!
+	-->
+	<!--
+		<dependencies>
+		</dependencies>
+	-->
+	<about
+		name="rk.apyramid"
+		shortinfo="An RKWard plugin to create population pyramids from survey or dataframe objects using the 'apyramid' package. Supports automatic binning and factor conversion."
+		longinfo="An RKWard plugin to create population pyramids from survey or dataframe objects using the 'apyramid' package. Supports automatic binning and factor conversion."
+		version="0.0.6"
+		releasedate="2026-01-23"
+		url="https://github.com/AlfCano/rk.apyramid"
+		license="GPL (&gt;= 3)"
+	>
+		<author
+			given="Alfonso"
+			family="Cano"
+			email="alfonso.cano@correo.buap.mx"
+			role="aut, cre"
+		/>
+	</about>
+	<require
+		map="rkward::menu"
+	/>
+	<require
+		map="rkward::embedded"
+	/>
+	<components>
+		<component
+			id="cmp_AgePyramidAgePyramid"
+			label="Age Pyramid"
+			type="standard"
+			file="plugins/AgePyramid.xml"
+		>
+		</component>
+	</components>
+	<hierarchy>
+		<menu
+			id="men_Survey"
+			label="Survey"
+		>
+			<menu
+				id="men_Graphs"
+				label="Graphs"
+			>
+				<menu
+					id="men_apyramid"
+					label="apyramid"
+				>
+					<entry
+						component="cmp_AgePyramidAgePyramid"
+					/>
+				</menu>
+			</menu>
+		</menu>
+	</hierarchy>
+	<!--
+		<context
+			id="x11"
+		>
+		</context>
+	-->
+	<!--
+		<context
+			id="import"
+		>
+		</context>
+	-->
+</document>

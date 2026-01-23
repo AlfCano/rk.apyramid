@@ -1,0 +1,90 @@
+<!DOCTYPE rkhelp >
+<document>
+	<!--
+		this code was generated using the rkwarddev package.
+	perhaps don't make changes here, but in the rkwarddev script instead!
+	-->
+	<summary>
+	</summary>
+	<usage>
+	</usage>
+	<!--
+		<section id="sct_EDITORDE" title="EDIT OR DELETE ME">
+			EDIT OR DELETE ME
+		</section>
+	-->
+	<settings>
+		<caption id="tab_Variabls" />
+		<setting id="pyr_data">
+		</setting>
+		<setting id="pyr_age">
+		</setting>
+		<caption id="frm_rAVPUMFCFB" />
+		<setting id="age_trans_mode">
+		</setting>
+		<setting id="bin_width">
+		</setting>
+		<setting id="pyr_split">
+		</setting>
+		<setting id="pyr_stack">
+		</setting>
+		<caption id="tab_Settings" />
+		<setting id="pyr_prop">
+		</setting>
+		<setting id="pyr_narm">
+		</setting>
+		<setting id="pyr_mid">
+		</setting>
+		<caption id="tab_Labels" />
+		<setting id="plot_title">
+		</setting>
+		<setting id="plot_subtitle">
+		</setting>
+		<setting id="plot_xlab">
+		</setting>
+		<setting id="plot_ylab">
+		</setting>
+		<setting id="plot_legend_title">
+		</setting>
+		<setting id="plot_leg_wrap">
+		</setting>
+		<setting id="plot_caption">
+		</setting>
+		<caption id="tab_Theme" />
+		<setting id="theme_base_size">
+		</setting>
+		<caption id="frm_FnTnElSM" />
+		<setting id="rel_title">
+		</setting>
+		<setting id="rel_axis_title">
+		</setting>
+		<setting id="rel_axis_text">
+		</setting>
+		<setting id="rel_legend">
+		</setting>
+		<setting id="theme_legend_pos">
+		</setting>
+		<setting id="theme_palette">
+		</setting>
+		<caption id="tab_Output" />
+		<setting id="device_type">
+		</setting>
+		<setting id="dev_width">
+		</setting>
+		<setting id="dev_height">
+		</setting>
+		<setting id="dev_res">
+		</setting>
+	</settings>
+	<!--
+		<related>
+			<ul>
+				<li>
+					<link href="rkward://rhelp/..." />
+				</li>
+			</ul>
+		</related>
+	-->
+	<technical>
+	</technical>
+</document>

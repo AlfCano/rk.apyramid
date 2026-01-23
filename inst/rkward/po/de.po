@@ -1,0 +1,203 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: rk.apyramid 0.0.6\n"
+"Report-Msgid-Bugs-To: https://mail.kde.org/mailman/listinfo/kde-i18n-doc\n"
+"POT-Creation-Date: 2026-01-23 10:30+0000\n"
+"PO-Revision-Date: 2026-01-23 10:30+0000\n"
+"Last-Translator: Your Name <your.email@example.com>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0\n"
+
+msgid "An RKWard plugin to create population pyramids from survey or dataframe objects using the 'apyramid' package. Supports automatic binning and factor conversion."
+msgstr "Ein RKWard-Plugin zum Erstellen von Bevölkerungspyramiden aus Umfrage- oder Dataframe-Objekten unter Verwendung des 'apyramid'-Pakets. Unterstützt automatische Gruppierung und Faktorkonvertierung."
+
+msgid "Age Pyramid"
+msgstr "Alterspyramide"
+
+msgid "Survey"
+msgstr "Erhebung"
+
+msgid "Graphs"
+msgstr "Grafiken"
+
+msgid "apyramid"
+msgstr "apyramid"
+
+msgid "Plot Title"
+msgstr "Diagrammtitel"
+
+msgid "Plot Subtitle"
+msgstr "Diagrammuntertitel"
+
+msgid "X-axis Label (Count/Prop)"
+msgstr "X-Achsen-Beschriftung (Anzahl/Prop)"
+
+msgid "Y-axis Label (Age)"
+msgstr "Y-Achsen-Beschriftung (Alter)"
+
+msgid "Legend Title"
+msgstr "Legendentitel"
+
+msgid "Wrap Legend Title at (chars, 0 to disable)"
+msgstr "Legendentitel umbrechen bei (Zeichen, 0 zum Deaktivieren)"
+
+msgid "Plot Caption"
+msgstr "Diagrammbeschriftung (Caption)"
+
+msgid "Base Font Size (pts)"
+msgstr "Basisschriftgröße (pts)"
+
+msgid "Plot Title (Relative size)"
+msgstr "Diagrammtitel (Relative Größe)"
+
+msgid "Axis Labels (Relative size)"
+msgstr "Achsenbeschriftungen (Relative Größe)"
+
+msgid "Axis Ticks/Text (Relative size)"
+msgstr "Achsen-Ticks/Text (Relative Größe)"
+
+msgid "Legend Text (Relative size)"
+msgstr "Legendentext (Relative Größe)"
+
+msgid "Fine Tune Element Sizes (Multiplier)"
+msgstr "Feinabstimmung der Elementgrößen (Multiplikator)"
+
+msgid "Legend Position"
+msgstr "Legendenposition"
+
+msgid "Bottom"
+msgstr "Unten"
+
+msgid "Top"
+msgstr "Oben"
+
+msgid "Right"
+msgstr "Rechts"
+
+msgid "Left"
+msgstr "Links"
+
+msgid "None"
+msgstr "Keine"
+
+msgid "Color Palette"
+msgstr "Farbpalette"
+
+msgid "Default (apyramid)"
+msgstr "Standard (apyramid)"
+
+msgid "Viridis (Default)"
+msgstr "Viridis (Standard)"
+
+msgid "Viridis: Magma"
+msgstr "Viridis: Magma"
+
+msgid "Viridis: Inferno"
+msgstr "Viridis: Inferno"
+
+msgid "Viridis: Plasma"
+msgstr "Viridis: Plasma"
+
+msgid "Viridis: Cividis"
+msgstr "Viridis: Cividis"
+
+msgid "Brewer: Set1"
+msgstr "Brewer: Set1"
+
+msgid "Brewer: Set2"
+msgstr "Brewer: Set2"
+
+msgid "Brewer: Set3"
+msgstr "Brewer: Set3"
+
+msgid "Brewer: Dark2"
+msgstr "Brewer: Dark2"
+
+msgid "Brewer: Accent"
+msgstr "Brewer: Accent"
+
+msgid "Brewer: Paired"
+msgstr "Brewer: Paired"
+
+msgid "Brewer: Pastel1"
+msgstr "Brewer: Pastel1"
+
+msgid "Brewer: Pastel2"
+msgstr "Brewer: Pastel2"
+
+msgid "Grayscale"
+msgstr "Graustufen"
+
+msgid "Device type"
+msgstr "Gerätetyp"
+
+msgid "Width (px)"
+msgstr "Breite (px)"
+
+msgid "Height (px)"
+msgstr "Höhe (px)"
+
+msgid "Resolution (ppi)"
+msgstr "Auflösung (ppi)"
+
+msgid "Data Object (Survey or Data Frame)"
+msgstr "Datenobjekt (Umfrage oder Data Frame)"
+
+msgid "Age Group Variable"
+msgstr "Altersgruppenvariable"
+
+msgid "Split by (Sex/Gender/Region)"
+msgstr "Aufteilen nach (Geschlecht/Region)"
+
+msgid "Stack by (Optional subgroup)"
+msgstr "Stapeln nach (Optionale Untergruppe)"
+
+msgid "Age Variable Processing"
+msgstr "Verarbeitung der Altersvariable"
+
+msgid "Use as is (Must be Factor)"
+msgstr "Wie besehen verwenden (Muss Faktor sein)"
+
+msgid "Convert to Factor (as.factor)"
+msgstr "In Faktor konvertieren (as.factor)"
+
+msgid "Bin Numeric Variable (cut)"
+msgstr "Numerische Variable gruppieren (cut)"
+
+msgid "Bin Width (Years)"
+msgstr "Klassenbreite (Jahre)"
+
+msgid "Show Proportions (instead of Counts)"
+msgstr "Proportionen anzeigen (statt Anzahl)"
+
+msgid "Remove NA values"
+msgstr "NA-Werte entfernen"
+
+msgid "Show Midpoint lines"
+msgstr "Mittelpunktslinien anzeigen"
+
+msgid "Population Pyramid (apyramid)"
+msgstr "Bevölkerungspyramide (apyramid)"
+
+msgid "Variables"
+msgstr "Variablen"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Labels"
+msgstr "Beschriftungen"
+
+msgid "Theme"
+msgstr "Thema"
+
+msgid "Output"
+msgstr "Ausgabe"
+
+msgid "Creates a population pyramid using apyramid::age_pyramid. Supports complex survey designs."
+msgstr "Erstellt eine Bevölkerungspyramide mit apyramid::age_pyramid. Unterstützt komplexe Erhebungsdesigns."
