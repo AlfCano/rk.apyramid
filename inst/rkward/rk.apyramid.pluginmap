@@ -20,7 +20,7 @@
 		name="rk.apyramid"
 		shortinfo="An RKWard plugin to create population pyramids from survey or dataframe objects using the 'apyramid' package. Supports automatic binning and factor conversion."
 		longinfo="An RKWard plugin to create population pyramids from survey or dataframe objects using the 'apyramid' package. Supports automatic binning and factor conversion."
-		version="0.0.6"
+		version="0.1.0"
 		releasedate="2026-01-23"
 		url="https://github.com/AlfCano/rk.apyramid"
 		license="GPL (&gt;= 3)"
@@ -56,14 +56,9 @@
 				id="men_Graphs"
 				label="Graphs"
 			>
-				<menu
-					id="men_apyramid"
-					label="apyramid"
-				>
-					<entry
-						component="cmp_AgePyramidAgePyramid"
-					/>
-				</menu>
+				<entry
+					component="cmp_AgePyramidAgePyramid"
+				/>
 			</menu>
 		</menu>
 	</hierarchy>

@@ -52,7 +52,7 @@ function calculate(is_preview){
     var stack = getColumnName(getValue("pyr_stack"));
     var trans_mode = getValue("age_trans_mode");
     var bin_w = getValue("bin_width");
-    
+
     var prop = getValue("pyr_prop") == "1" ? "TRUE" : "FALSE";
     var narm = getValue("pyr_narm") == "1" ? "TRUE" : "FALSE";
     var mid = getValue("pyr_mid") == "1" ? "TRUE" : "FALSE";
@@ -65,12 +65,12 @@ function calculate(is_preview){
         echo("} else {\n");
         echo("  plot_data[[\"" + age_col + "\"]] <- as.factor(plot_data[[\"" + age_col + "\"]])\n");
         echo("}\n");
-    } 
+    }
     else if (trans_mode == "bin") {
         var cut_cmd_survey = "cut(" + age_col + ", breaks = seq(0, max(" + age_col + ", na.rm=TRUE) + " + bin_w + ", " + bin_w + "), right = FALSE)";
         var ref = "plot_data[[\"" + age_col + "\"]]";
         var cut_cmd_df = "cut(" + ref + ", breaks = seq(0, max(" + ref + ", na.rm=TRUE) + " + bin_w + ", " + bin_w + "), right = FALSE)";
-        
+
         echo("if(inherits(plot_data, \"survey.design\")) {\n");
         echo("  plot_data <- update(plot_data, " + age_col + " = " + cut_cmd_survey + ")\n");
         echo("} else {\n");
@@ -88,7 +88,7 @@ function calculate(is_preview){
     opts.push("show_midpoint = " + mid);
 
     echo("p <- apyramid::age_pyramid(" + opts.join(", ") + ")\n");
-    
+
     // --- LABELS ---
     var title = getValue("plot_title");
     var sub = getValue("plot_subtitle");
@@ -97,14 +97,14 @@ function calculate(is_preview){
     var ylab = getValue("plot_ylab");
     var leg = getValue("plot_legend_title");
     var leg_wrap = getValue("plot_leg_wrap"); // New wrap value
-    
+
     var labs = [];
     if(title) labs.push("title=\"" + title + "\"");
     if(sub) labs.push("subtitle=\"" + sub + "\"");
     if(cap) labs.push("caption=\"" + cap + "\"");
     if(xlab) labs.push("y=\"" + xlab + "\""); // Note: apyramid flips coords
     if(ylab) labs.push("x=\"" + ylab + "\"");
-    
+
     // Logic for Legend Title Wrapping
     if (leg) {
         if(leg_wrap > 0) {
@@ -113,9 +113,9 @@ function calculate(is_preview){
              labs.push("fill=\"" + leg + "\"");
         }
     }
-    
+
     if(labs.length > 0) echo("p <- p + ggplot2::labs(" + labs.join(", ") + ")\n");
-    
+
     // --- PALETTES ---
     var pal = getValue("theme_palette");
     // Viridis Options
@@ -124,7 +124,7 @@ function calculate(is_preview){
     if (pal == "inferno") echo("p <- p + ggplot2::scale_fill_viridis_d(option = \"B\")\n");
     if (pal == "plasma")  echo("p <- p + ggplot2::scale_fill_viridis_d(option = \"C\")\n");
     if (pal == "cividis") echo("p <- p + ggplot2::scale_fill_viridis_d(option = \"E\")\n");
-    
+
     // Brewer Options
     if (pal == "set1")    echo("p <- p + ggplot2::scale_fill_brewer(palette=\"Set1\")\n");
     if (pal == "set2")    echo("p <- p + ggplot2::scale_fill_brewer(palette=\"Set2\")\n");
@@ -134,10 +134,10 @@ function calculate(is_preview){
     if (pal == "paired")  echo("p <- p + ggplot2::scale_fill_brewer(palette=\"Paired\")\n");
     if (pal == "pastel1") echo("p <- p + ggplot2::scale_fill_brewer(palette=\"Pastel1\")\n");
     if (pal == "pastel2") echo("p <- p + ggplot2::scale_fill_brewer(palette=\"Pastel2\")\n");
-    
+
     // Greyscale
     if (pal == "grey")    echo("p <- p + ggplot2::scale_fill_grey()\n");
-    
+
     // --- THEMES & SIZES ---
     var pos = getValue("theme_legend_pos");
     var base_size = getValue("theme_base_size");
@@ -145,7 +145,7 @@ function calculate(is_preview){
     var rel_axis_title = getValue("rel_axis_title");
     var rel_axis_text = getValue("rel_axis_text");
     var rel_legend = getValue("rel_legend");
-    
+
     echo("p <- p + ggplot2::theme_minimal(base_size = " + base_size + ") + ggplot2::theme(\n");
     echo("  legend.position = \"" + pos + "\",\n");
     echo("  plot.title = ggplot2::element_text(size = ggplot2::rel(" + rel_title + ")),\n");
