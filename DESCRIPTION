@@ -1,16 +1,14 @@
 Package: rk.apyramid
 Type: Package
-Title: An RKWard plugin to create population pyramids from survey or
-        dataframe objects using the 'apyramid' package. Supports
-        automatic binning and factor conversion.
-Version: 0.1.0
-Date: 2026-01-23
+Title: High-performance Age pyramids for Data Frames and Survey objects
+        using SWD principles.
+Version: 0.1.1
+Date: 2026-02-04
 Author: Alfonso Cano
 Maintainer: Alfonso Cano <alfonso.cano@correo.buap.mx>
 Enhances: rkward
-Description: An RKWard plugin to create population pyramids from survey
-        or dataframe objects using the 'apyramid' package. Supports
-        automatic binning and factor conversion.
+Description: High-performance Age pyramids for Data Frames and Survey
+        objects using SWD principles.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyLoad: yes

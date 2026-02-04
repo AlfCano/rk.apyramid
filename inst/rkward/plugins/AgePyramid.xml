@@ -18,90 +18,105 @@
 			<connect governor="!edit!.state" client="!edit!.enabled" />
 		-->
 	</logic>
-	<dialog label="Population Pyramid (apyramid)">
-		<row id="row_vVVDOSDFAG">
+	<dialog label="SWD Population Pyramid">
+		<row id="row_vVVDOAVAPA">
 			<varselector id="pyr_selector" />
-			<column id="clm_tVVDOSDFAG">
+			<column id="clm_tVVDOAVAPA">
 				<tabbook>
 					<tab label="Variables" id="tab_Variabls">
-						<column id="clm_vDOSDFAGVA">
-							<varslot id="pyr_data" label="Data Object (Survey or Data Frame)" source="pyr_selector" classes="data.frame survey.design tbl_svy" required="true" />
-							<varslot id="pyr_age" label="Age Group Variable" source="pyr_selector" required="true" />
-							<frame id="frm_rAVPUMFCFB">
-								<radio id="age_trans_mode" label="Age Variable Processing">
+						<column id="clm_vDOAVAPAPM">
+							<varslot id="pyr_data" label="Data Object" source="pyr_selector" classes="data.frame survey.design tbl_svy" required="true" />
+							<varslot id="pyr_age" label="Age Variable" source="pyr_selector" required="true" />
+							<frame label="Age Processing" id="frm_AgPrcssn">
+								<radio id="age_trans_mode" label="Mode">
 									<option label="Use as is (Must be Factor)" value="none" checked="true" />
-									<option label="Convert to Factor (as.factor)" value="factor" />
-									<option label="Bin Numeric Variable (cut)" value="bin" />
+									<option label="Convert to Factor" value="factor" />
+									<option label="Bin Numeric Variable" value="bin" />
 								</radio>
 								<spinbox label="Bin Width (Years)" id="bin_width" initial="5" min="1" max="100" />
 							</frame>
-							<varslot id="pyr_split" label="Split by (Sex/Gender/Region)" source="pyr_selector" required="true" />
-							<varslot id="pyr_stack" label="Stack by (Optional subgroup)" source="pyr_selector" />
+							<varslot id="pyr_split" label="Split by (Sex)" source="pyr_selector" required="true" />
+							<varslot id="pyr_stack" label="Stack Variable (Optional)" source="pyr_selector" />
 						</column>
 					</tab>
 					<tab label="Settings" id="tab_Settings">
-						<column id="clm_cSPC1RNA1S">
-							<checkbox id="pyr_prop" label="Show Proportions (instead of Counts)" value="1" />
+						<column id="clm_cSP1RNA1SM">
+							<checkbox id="pyr_prop" label="Show Proportions (%)" value="1" />
 							<checkbox id="pyr_narm" label="Remove NA values" value="1" checked="true" />
 							<checkbox id="pyr_mid" label="Show Midpoint lines" value="1" />
+							<frame label="Survey Statistics" id="frm_SrvyStts">
+								<checkbox id="lonely_psu" label="Adjust for lonely PSUs" value="adjust" checked="true" />
+							</frame>
+						</column>
+					</tab>
+					<tab label="Options" id="tab_Options">
+						<column id="clm_fATRATRXTA">
+							<frame label="Axis Title Rotation" id="frm_AxsTtlRt">
+								<row id="row_sXTA9090YT">
+									<spinbox label="X Title Angle" id="theme_x_title_angle" min="-90" max="90" />
+									<spinbox label="Y Title Angle" id="theme_y_title_angle" min="-90" max="90" />
+								</row>
+							</frame>
+							<frame label="Axis Value Rotation" id="frm_AxsVlRtt">
+								<row id="row_sXVA9090YV">
+									<spinbox label="X Value Angle" id="theme_x_angle" min="-90" max="90" />
+									<spinbox label="Y Value Angle" id="theme_y_angle" min="-90" max="90" />
+								</row>
+							</frame>
 						</column>
 					</tab>
 					<tab label="Labels" id="tab_Labels">
-						<column id="clm_iPTPSXLCPY">
+						<column id="clm_iPTPSXLVYA">
 							<input label="Plot Title" id="plot_title" />
 							<input label="Plot Subtitle" id="plot_subtitle" />
-							<input label="X-axis Label (Count/Prop)" id="plot_xlab" />
-							<input label="Y-axis Label (Age)" id="plot_ylab" />
+							<input label="X-axis Label (Values)" id="plot_xlab" />
+							<input label="Y-Axis Label (Age)" id="plot_ylab" />
 							<input label="Legend Title" id="plot_legend_title" />
-							<spinbox label="Wrap Legend Title at (chars, 0 to disable)" id="plot_leg_wrap" min="0" max="100" />
+							<row id="row_sWT0100WL0">
+								<spinbox label="Wrap Title at (chars)" id="plot_leg_wrap" min="0" max="100" />
+								<spinbox label="Wrap Labels at (chars)" id="plot_leg_lbl_wrap" min="0" max="100" />
+							</row>
 							<input label="Plot Caption" id="plot_caption" />
 						</column>
 					</tab>
 					<tab label="Theme" id="tab_Theme">
-						<column id="clm_sBFS16650F">
-							<spinbox label="Base Font Size (pts)" id="theme_base_size" initial="16" min="6" max="50" />
-							<frame label="Fine Tune Element Sizes (Multiplier)" id="frm_FnTnElSM">
-								<spinbox label="Plot Title (Relative size)" id="rel_title" initial="1.2" min="0.1" max="5" />
-								<spinbox label="Axis Labels (Relative size)" id="rel_axis_title" initial="0.9" min="0.1" max="5" />
-								<spinbox label="Axis Ticks/Text (Relative size)" id="rel_axis_text" initial="0.9" min="0.1" max="5" />
-								<spinbox label="Legend Text (Relative size)" id="rel_legend" initial="0.8" min="0.1" max="5" />
-							</frame>
+						<column id="clm_sBFS12650L">
+							<spinbox label="Base Font Size" id="theme_base_size" initial="12" min="6" max="50" />
 							<dropdown id="theme_legend_pos" label="Legend Position">
 								<option label="Bottom" value="bottom" checked="true" />
 								<option label="Top" value="top" />
 								<option label="Right" value="right" />
-								<option label="Left" value="left" />
 								<option label="None" value="none" />
 							</dropdown>
 							<dropdown id="theme_palette" label="Color Palette">
 								<option label="Default (apyramid)" value="default" checked="true" />
-								<option label="Viridis (Default)" value="viridis" />
-								<option label="Viridis: Magma" value="magma" />
-								<option label="Viridis: Inferno" value="inferno" />
-								<option label="Viridis: Plasma" value="plasma" />
-								<option label="Viridis: Cividis" value="cividis" />
-								<option label="Brewer: Set1" value="set1" />
-								<option label="Brewer: Set2" value="set2" />
-								<option label="Brewer: Set3" value="set3" />
-								<option label="Brewer: Dark2" value="dark2" />
-								<option label="Brewer: Accent" value="accent" />
-								<option label="Brewer: Paired" value="paired" />
-								<option label="Brewer: Pastel1" value="pastel1" />
-								<option label="Brewer: Pastel2" value="pastel2" />
-								<option label="Grayscale" value="grey" />
+								<option label="SWD Red/Gray" value="swd_red" />
+								<option label="SWD Blue/Gray" value="swd_blue" />
+								<option label="SWD Orange/Gray" value="swd_orange" />
+								<option label="Viridis" value="viridis" />
+								<option label="Brewer: Paired" value="Paired" />
+								<option label="Brewer: Set1" value="Set1" />
+								<option label="Brewer: Accent" value="Accent" />
 							</dropdown>
 						</column>
 					</tab>
-					<tab label="Output" id="tab_Output">
+					<tab label="Output &amp; Export" id="tab_OtptExpr">
 						<column id="clm_dDPNGPNGSV">
 							<dropdown id="device_type" label="Device type">
 								<option label="PNG" value="PNG" checked="true" />
 								<option label="SVG" value="SVG" />
-								<option label="JPG" value="JPG" />
 							</dropdown>
-							<spinbox label="Width (px)" id="dev_width" initial="800" min="100" max="4000" />
-							<spinbox label="Height (px)" id="dev_height" initial="600" min="100" max="4000" />
-							<spinbox label="Resolution (ppi)" id="dev_res" initial="150" min="50" max="600" />
+							<row id="row_sW10241004">
+								<spinbox label="Width (px)" id="dev_width" initial="1024" min="100" max="4000" />
+								<spinbox label="Height (px)" id="dev_height" initial="1024" min="100" max="4000" />
+							</row>
+							<column id="clm_sR15050600">
+								<spinbox label="Resolution (ppi)" id="dev_res" initial="150" min="50" max="600" />
+								<dropdown id="dev_bg" label="Background">
+									<option label="Transparent" value="transparent" checked="true" />
+									<option label="White" value="white" />
+								</dropdown>
+							</column>
 						</column>
 					</tab>
 				</tabbook>

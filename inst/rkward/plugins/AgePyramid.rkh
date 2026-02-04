@@ -4,9 +4,14 @@
 		this code was generated using the rkwarddev package.
 	perhaps don't make changes here, but in the rkwarddev script instead!
 	-->
+	<title>
+		Age Pyramid
+	</title>
 	<summary>
+		Generates weighted population pyramids for Data Frames and Survey objects using SWD principles.
 	</summary>
 	<usage>
+		Calculates weighted counts or proportions. Automatically simplifies large numbers (e.g., 6,000,000 to 6M) and removes negative signs from labels.
 	</usage>
 	<!--
 		<section id="sct_EDITORDE" title="EDIT OR DELETE ME">
@@ -19,7 +24,7 @@
 		</setting>
 		<setting id="pyr_age">
 		</setting>
-		<caption id="frm_rAVPUMFCFB" />
+		<caption id="frm_AgPrcssn" />
 		<setting id="age_trans_mode">
 		</setting>
 		<setting id="bin_width">
@@ -35,6 +40,20 @@
 		</setting>
 		<setting id="pyr_mid">
 		</setting>
+		<caption id="frm_SrvyStts" />
+		<setting id="lonely_psu">
+		</setting>
+		<caption id="tab_Options" />
+		<caption id="frm_AxsTtlRt" />
+		<setting id="theme_x_title_angle">
+		</setting>
+		<setting id="theme_y_title_angle">
+		</setting>
+		<caption id="frm_AxsVlRtt" />
+		<setting id="theme_x_angle">
+		</setting>
+		<setting id="theme_y_angle">
+		</setting>
 		<caption id="tab_Labels" />
 		<setting id="plot_title">
 		</setting>
@@ -48,25 +67,18 @@
 		</setting>
 		<setting id="plot_leg_wrap">
 		</setting>
+		<setting id="plot_leg_lbl_wrap">
+		</setting>
 		<setting id="plot_caption">
 		</setting>
 		<caption id="tab_Theme" />
 		<setting id="theme_base_size">
 		</setting>
-		<caption id="frm_FnTnElSM" />
-		<setting id="rel_title">
-		</setting>
-		<setting id="rel_axis_title">
-		</setting>
-		<setting id="rel_axis_text">
-		</setting>
-		<setting id="rel_legend">
-		</setting>
 		<setting id="theme_legend_pos">
 		</setting>
 		<setting id="theme_palette">
 		</setting>
-		<caption id="tab_Output" />
+		<caption id="tab_OtptExpr" />
 		<setting id="device_type">
 		</setting>
 		<setting id="dev_width">
@@ -74,6 +86,8 @@
 		<setting id="dev_height">
 		</setting>
 		<setting id="dev_res">
+		</setting>
+		<setting id="dev_bg">
 		</setting>
 	</settings>
 	<!--
