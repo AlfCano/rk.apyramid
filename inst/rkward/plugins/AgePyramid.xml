@@ -18,7 +18,7 @@
 			<connect governor="!edit!.state" client="!edit!.enabled" />
 		-->
 	</logic>
-	<dialog label="SWD Population Pyramid">
+	<dialog label="SWD Age Pyramid">
 		<row id="row_vVVDOAVAPA">
 			<varselector id="pyr_selector" />
 			<column id="clm_tVVDOAVAPA">
@@ -45,7 +45,7 @@
 							<checkbox id="pyr_narm" label="Remove NA values" value="1" checked="true" />
 							<checkbox id="pyr_mid" label="Show Midpoint lines" value="1" />
 							<frame label="Survey Statistics" id="frm_SrvyStts">
-								<checkbox id="lonely_psu" label="Adjust for lonely PSUs" value="adjust" checked="true" />
+								<checkbox id="lonely_psu" label="Adjust for lonely PSUs" value="adjust" />
 							</frame>
 						</column>
 					</tab>

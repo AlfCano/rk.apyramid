@@ -8,7 +8,7 @@
 		Age Pyramid
 	</title>
 	<summary>
-		Generates weighted population pyramids for Data Frames and Survey objects using SWD principles.
+		Generates weighted Age pyramids for Data Frames and Survey objects using SWD principles.
 	</summary>
 	<usage>
 		Calculates weighted counts or proportions. Automatically simplifies large numbers (e.g., 6,000,000 to 6M) and removes negative signs from labels.

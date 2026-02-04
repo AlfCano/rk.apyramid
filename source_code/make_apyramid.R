@@ -16,7 +16,7 @@ local({
       role = c("aut", "cre")
     ),
     about = list(
-      desc = "High-performance Population pyramids for Data Frames and Survey objects using SWD principles.",
+      desc = "High-performance Age pyramids for Data Frames and Survey objects using SWD principles.",
       version = plugin_ver,
       date = format(Sys.Date(), "%Y-%m-%d"),
       url = "https://github.com/AlfCano/rk.apyramid",
@@ -146,7 +146,7 @@ local({
   pyr_split <- rk.XML.varslot(label = "Split by (Sex)", source = "pyr_selector", required = TRUE, id.name = "pyr_split")
   pyr_stack <- rk.XML.varslot(label = "Stack Variable (Optional)", source = "pyr_selector", id.name = "pyr_stack")
 
-  pyr_dialog <- rk.XML.dialog(label = "SWD Population Pyramid", child = rk.XML.row(
+  pyr_dialog <- rk.XML.dialog(label = "SWD Age Pyramid", child = rk.XML.row(
       pyr_selector,
       rk.XML.col(
           rk.XML.tabbook(tabs = list(
@@ -168,7 +168,7 @@ local({
                   rk.XML.cbox(label = "Remove NA values", value = "1", chk = TRUE, id.name = "pyr_narm"),
                   rk.XML.cbox(label = "Show Midpoint lines", value = "1", id.name = "pyr_mid"),
                   rk.XML.frame(label = "Survey Statistics",
-                      rk.XML.cbox(label = "Adjust for lonely PSUs", value = "adjust", chk = TRUE, id.name = "lonely_psu")
+                      rk.XML.cbox(label = "Adjust for lonely PSUs", value = "adjust", chk = FALSE, id.name = "lonely_psu")
                   )
               ),
               "Options" = options_tab,
@@ -299,7 +299,7 @@ local({
   # =========================================================================================
 
   help_list <- list(
-    summary = rk.rkh.summary("Generates weighted population pyramids for Data Frames and Survey objects using SWD principles."),
+    summary = rk.rkh.summary("Generates weighted Age pyramids for Data Frames and Survey objects using SWD principles."),
     usage = rk.rkh.usage("Calculates weighted counts or proportions. Automatically simplifies large numbers (e.g., 6,000,000 to 6M) and removes negative signs from labels.")
   )
 
@@ -313,7 +313,7 @@ local({
         printout = js_print_pyr
     ),
     rkh = help_list,
-    pluginmap = list(name = "Population Pyramid", hierarchy = list("Survey", "Graphs")),
+    pluginmap = list(name = "Age Pyramid", hierarchy = list("Survey", "Graphs")),
     create = c("pmap", "xml", "js", "desc", "rkh"),
     load = TRUE, overwrite = TRUE, show = FALSE
   )
