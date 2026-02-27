@@ -20,8 +20,8 @@
 		name="rk.apyramid"
 		shortinfo="High-performance Age pyramids for Data Frames and Survey objects using SWD principles."
 		longinfo="High-performance Age pyramids for Data Frames and Survey objects using SWD principles."
-		version="0.1.1"
-		releasedate="2026-02-04"
+		version="0.1.2"
+		releasedate="2026-02-27"
 		url="https://github.com/AlfCano/rk.apyramid"
 		license="GPL (&gt;= 3)"
 	>

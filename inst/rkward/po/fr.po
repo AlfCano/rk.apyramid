@@ -1,23 +1,28 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: rk.apyramid 0.0.6\n"
-"Report-Msgid-Bugs-To: https://mail.kde.org/mailman/listinfo/kde-i18n-doc\n"
-"POT-Creation-Date: 2026-01-23 10:30+0000\n"
-"PO-Revision-Date: 2026-01-23 10:30+0000\n"
-"Last-Translator: Your Name <your.email@example.com>\n"
-"Language-Team: French <kde-francophone@kde.org>\n"
+"Project-Id-Version: rk.apyramid 0.1.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-27 13:00+0000\n"
+"PO-Revision-Date: 2026-02-27 13:05+0100\n"
+"Last-Translator: \n"
+"Language-Team: French <rkward-devel@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0\n"
 
-msgid "An RKWard plugin to create population pyramids from survey or dataframe objects using the 'apyramid' package. Supports automatic binning and factor conversion."
-msgstr "Un plugin RKWard pour créer des pyramides des âges à partir d'enquêtes ou de dataframes utilisant le package 'apyramid'. Prend en charge le regroupement automatique et la conversion de facteurs."
+msgid "High-performance Age pyramids for Data Frames and Survey objects using SWD principles."
+msgstr "Pyramides des âges haute performance pour Data Frames et objets d'enquête utilisant les principes SWD."
+
+msgid "Generates weighted Age pyramids for Data Frames and Survey objects using SWD principles."
+msgstr "Génère des pyramides des âges pondérées pour Data Frames et objets d'enquête utilisant les principes SWD."
+
+msgid "Calculates weighted counts or proportions. Automatically simplifies large numbers (e.g., 6,000,000 to 6M) and removes negative signs from labels."
+msgstr "Calcule des effectifs ou proportions pondérés. Simplifie automatiquement les grands nombres (ex. 6 000 000 en 6M) et supprime les signes négatifs des étiquettes."
 
 msgid "Age Pyramid"
-msgstr "Pyramide des Âges"
+msgstr "Pyramide des âges"
 
 msgid "Survey"
 msgstr "Enquête"
@@ -25,8 +30,8 @@ msgstr "Enquête"
 msgid "Graphs"
 msgstr "Graphiques"
 
-msgid "apyramid"
-msgstr "apyramid"
+msgid "SWD Age Pyramid"
+msgstr "Pyramide des âges SWD"
 
 msgid "Plot Title"
 msgstr "Titre du graphique"
@@ -34,38 +39,44 @@ msgstr "Titre du graphique"
 msgid "Plot Subtitle"
 msgstr "Sous-titre du graphique"
 
-msgid "X-axis Label (Count/Prop)"
-msgstr "Étiquette axe X (Effectif/Prop)"
+msgid "X-axis Label (Values)"
+msgstr "Étiquette axe X (Valeurs)"
 
-msgid "Y-axis Label (Age)"
+msgid "Y-Axis Label (Age)"
 msgstr "Étiquette axe Y (Âge)"
 
 msgid "Legend Title"
 msgstr "Titre de la légende"
 
-msgid "Wrap Legend Title at (chars, 0 to disable)"
-msgstr "Renvoyer titre légende à la ligne à (caractères, 0 pour désactiver)"
+msgid "Wrap Title at (chars)"
+msgstr "Envelopper titre à (caractères)"
+
+msgid "Wrap Labels at (chars)"
+msgstr "Envelopper étiquettes à (caractères)"
 
 msgid "Plot Caption"
 msgstr "Légende du graphique (Caption)"
 
-msgid "Base Font Size (pts)"
-msgstr "Taille de police de base (pts)"
+msgid "Axis Title Rotation"
+msgstr "Rotation titre de l'axe"
 
-msgid "Plot Title (Relative size)"
-msgstr "Titre du graphique (Taille relative)"
+msgid "X Title Angle"
+msgstr "Angle titre X"
 
-msgid "Axis Labels (Relative size)"
-msgstr "Étiquettes des axes (Taille relative)"
+msgid "Y Title Angle"
+msgstr "Angle titre Y"
 
-msgid "Axis Ticks/Text (Relative size)"
-msgstr "Texte des axes (Taille relative)"
+msgid "Axis Value Rotation"
+msgstr "Rotation valeur de l'axe"
 
-msgid "Legend Text (Relative size)"
-msgstr "Texte de la légende (Taille relative)"
+msgid "X Value Angle"
+msgstr "Angle valeur X"
 
-msgid "Fine Tune Element Sizes (Multiplier)"
-msgstr "Ajustement fin des tailles (Multiplicateur)"
+msgid "Y Value Angle"
+msgstr "Angle valeur Y"
+
+msgid "Base Font Size"
+msgstr "Taille de police de base"
 
 msgid "Legend Position"
 msgstr "Position de la légende"
@@ -79,9 +90,6 @@ msgstr "Haut"
 msgid "Right"
 msgstr "Droite"
 
-msgid "Left"
-msgstr "Gauche"
-
 msgid "None"
 msgstr "Aucune"
 
@@ -91,47 +99,26 @@ msgstr "Palette de couleurs"
 msgid "Default (apyramid)"
 msgstr "Défaut (apyramid)"
 
-msgid "Viridis (Default)"
-msgstr "Viridis (Défaut)"
+msgid "SWD Red/Gray"
+msgstr "SWD Rouge/Gris"
 
-msgid "Viridis: Magma"
-msgstr "Viridis: Magma"
+msgid "SWD Blue/Gray"
+msgstr "SWD Bleu/Gris"
 
-msgid "Viridis: Inferno"
-msgstr "Viridis: Inferno"
+msgid "SWD Orange/Gray"
+msgstr "SWD Orange/Gris"
 
-msgid "Viridis: Plasma"
-msgstr "Viridis: Plasma"
-
-msgid "Viridis: Cividis"
-msgstr "Viridis: Cividis"
-
-msgid "Brewer: Set1"
-msgstr "Brewer: Set1"
-
-msgid "Brewer: Set2"
-msgstr "Brewer: Set2"
-
-msgid "Brewer: Set3"
-msgstr "Brewer: Set3"
-
-msgid "Brewer: Dark2"
-msgstr "Brewer: Dark2"
-
-msgid "Brewer: Accent"
-msgstr "Brewer: Accent"
+msgid "Viridis"
+msgstr "Viridis"
 
 msgid "Brewer: Paired"
 msgstr "Brewer: Paired"
 
-msgid "Brewer: Pastel1"
-msgstr "Brewer: Pastel1"
+msgid "Brewer: Set1"
+msgstr "Brewer: Set1"
 
-msgid "Brewer: Pastel2"
-msgstr "Brewer: Pastel2"
-
-msgid "Grayscale"
-msgstr "Niveaux de gris"
+msgid "Brewer: Accent"
+msgstr "Brewer: Accent"
 
 msgid "Device type"
 msgstr "Type de périphérique"
@@ -145,50 +132,71 @@ msgstr "Hauteur (px)"
 msgid "Resolution (ppi)"
 msgstr "Résolution (ppi)"
 
-msgid "Data Object (Survey or Data Frame)"
-msgstr "Objet de données (Enquête ou Data Frame)"
+msgid "Background"
+msgstr "Arrière-plan"
 
-msgid "Age Group Variable"
-msgstr "Variable Groupe d'Âge"
+msgid "Transparent"
+msgstr "Transparent"
 
-msgid "Split by (Sex/Gender/Region)"
-msgstr "Diviser par (Sexe/Genre/Région)"
+msgid "White"
+msgstr "Blanc"
 
-msgid "Stack by (Optional subgroup)"
-msgstr "Empiler par (Sous-groupe optionnel)"
+msgid "Data Object"
+msgstr "Objet de données"
 
-msgid "Age Variable Processing"
-msgstr "Traitement Variable Âge"
+msgid "Age Variable"
+msgstr "Variable d'âge"
 
-msgid "Use as is (Must be Factor)"
-msgstr "Utiliser tel quel (Doit être Facteur)"
+msgid "Split by (Sex)"
+msgstr "Diviser par (Sexe)"
 
-msgid "Convert to Factor (as.factor)"
-msgstr "Convertir en Facteur (as.factor)"
+msgid "Stack Variable (Optional)"
+msgstr "Variable d'empilement (Optionnel)"
 
-msgid "Bin Numeric Variable (cut)"
-msgstr "Regrouper Variable Numérique (cut)"
-
-msgid "Bin Width (Years)"
-msgstr "Largeur de classe (Années)"
-
-msgid "Show Proportions (instead of Counts)"
-msgstr "Afficher Proportions (au lieu des Effectifs)"
-
-msgid "Remove NA values"
-msgstr "Supprimer les valeurs NA"
-
-msgid "Show Midpoint lines"
-msgstr "Afficher lignes médianes"
-
-msgid "Population Pyramid (apyramid)"
-msgstr "Pyramide des Âges (apyramid)"
+msgid "Subset Expression (e.g. region == 'North')"
+msgstr "Expression de sous-ensemble (ex. region == 'Nord')"
 
 msgid "Variables"
 msgstr "Variables"
 
+msgid "Age Processing"
+msgstr "Traitement de l'âge"
+
+msgid "Mode"
+msgstr "Mode"
+
+msgid "Use as is (Must be Factor)"
+msgstr "Utiliser tel quel (Doit être Facteur)"
+
+msgid "Convert to Factor"
+msgstr "Convertir en Facteur"
+
+msgid "Bin Numeric Variable"
+msgstr "Regrouper variable numérique"
+
+msgid "Bin Width (Years)"
+msgstr "Largeur de classe (Années)"
+
 msgid "Settings"
 msgstr "Paramètres"
+
+msgid "Show Proportions (%)"
+msgstr "Afficher proportions (%)"
+
+msgid "Remove NA values"
+msgstr "Supprimer valeurs NA"
+
+msgid "Show Midpoint lines"
+msgstr "Afficher lignes médianes"
+
+msgid "Survey Statistics"
+msgstr "Statistiques d'enquête"
+
+msgid "Adjust for lonely PSUs"
+msgstr "Ajuster pour les UPM isolées"
+
+msgid "Options"
+msgstr "Options"
 
 msgid "Labels"
 msgstr "Étiquettes"
@@ -196,8 +204,5 @@ msgstr "Étiquettes"
 msgid "Theme"
 msgstr "Thème"
 
-msgid "Output"
-msgstr "Sortie"
-
-msgid "Creates a population pyramid using apyramid::age_pyramid. Supports complex survey designs."
-msgstr "Crée une pyramide des âges en utilisant apyramid::age_pyramid. Supporte les plans d'échantillonnage complexes."
+msgid "Output & Export"
+msgstr "Sortie et Exportation"

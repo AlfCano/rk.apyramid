@@ -19,13 +19,14 @@
 		-->
 	</logic>
 	<dialog label="SWD Age Pyramid">
-		<row id="row_vVVDOAVAPA">
+		<row id="row_vVVDOSENAV">
 			<varselector id="pyr_selector" />
-			<column id="clm_tVVDOAVAPA">
+			<column id="clm_tVVDOSENAV">
 				<tabbook>
 					<tab label="Variables" id="tab_Variabls">
-						<column id="clm_vDOAVAPAPM">
+						<column id="clm_vDOSENAVAP">
 							<varslot id="pyr_data" label="Data Object" source="pyr_selector" classes="data.frame survey.design tbl_svy" required="true" />
+							<input label="Subset Expression (e.g. region == 'North')" id="pyr_subset" />
 							<varslot id="pyr_age" label="Age Variable" source="pyr_selector" required="true" />
 							<frame label="Age Processing" id="frm_AgPrcssn">
 								<radio id="age_trans_mode" label="Mode">

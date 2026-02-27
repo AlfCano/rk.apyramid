@@ -6,7 +6,7 @@ local({
   rkwarddev.required("0.08-1")
 
   plugin_name <- "rk.apyramid"
-  plugin_ver <- "0.1.1"
+  plugin_ver <- "0.1.2" # Bumped version for new feature
 
   package_about <- rk.XML.about(
     name = plugin_name,
@@ -146,12 +146,16 @@ local({
   pyr_split <- rk.XML.varslot(label = "Split by (Sex)", source = "pyr_selector", required = TRUE, id.name = "pyr_split")
   pyr_stack <- rk.XML.varslot(label = "Stack Variable (Optional)", source = "pyr_selector", id.name = "pyr_stack")
 
+  # NEW: Subset input
+  pyr_subset <- rk.XML.input(label = "Subset Expression (e.g. region == 'North')", id.name = "pyr_subset")
+
   pyr_dialog <- rk.XML.dialog(label = "SWD Age Pyramid", child = rk.XML.row(
       pyr_selector,
       rk.XML.col(
           rk.XML.tabbook(tabs = list(
               "Variables" = rk.XML.col(
                   pyr_data,
+                  pyr_subset, # Added here
                   pyr_age,
                   rk.XML.frame(label = "Age Processing",
                       rk.XML.radio(label = "Mode", id.name = "age_trans_mode", options = list(
@@ -186,6 +190,7 @@ local({
 
   js_calc_pyr <- paste0(js_helpers, '
     var data = getValue("pyr_data");
+    var subset_expr = getValue("pyr_subset"); // Get subset string
     var age_col = getColumnName(getValue("pyr_age"));
     var split = getColumnName(getValue("pyr_split"));
     var stack = getColumnName(getValue("pyr_stack"));
@@ -202,6 +207,11 @@ local({
     echo("  if(!base::require(srvyr)){stop(\\"Package srvyr is required.\\")}\\n");
     echo("  plot_data <- srvyr::as_survey_design(plot_data)\\n");
     echo("}\\n");
+
+    // NEW: Apply subset if expression exists
+    if(subset_expr) {
+        echo("plot_data <- subset(plot_data, " + subset_expr + ")\\n");
+    }
 
     var trans_mode = getValue("age_trans_mode");
     if (trans_mode != "none") {
@@ -317,5 +327,5 @@ local({
     create = c("pmap", "xml", "js", "desc", "rkh"),
     load = TRUE, overwrite = TRUE, show = FALSE
   )
-    cat("\nPlugin 'rk.apyramid' (v0.1.1) generated successfully.\n")
+    cat("\nPlugin 'rk.apyramid' (v0.1.2) generated successfully.\n")
 })

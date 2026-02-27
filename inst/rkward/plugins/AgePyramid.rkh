@@ -22,6 +22,8 @@
 		<caption id="tab_Variabls" />
 		<setting id="pyr_data">
 		</setting>
+		<setting id="pyr_subset">
+		</setting>
 		<setting id="pyr_age">
 		</setting>
 		<caption id="frm_AgPrcssn" />

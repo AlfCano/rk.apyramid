@@ -102,6 +102,7 @@ function calculate(is_preview){
     }
   
     var data = getValue("pyr_data");
+    var subset_expr = getValue("pyr_subset"); // Get subset string
     var age_col = getColumnName(getValue("pyr_age"));
     var split = getColumnName(getValue("pyr_split"));
     var stack = getColumnName(getValue("pyr_stack"));
@@ -118,6 +119,11 @@ function calculate(is_preview){
     echo("  if(!base::require(srvyr)){stop(\"Package srvyr is required.\")}\n");
     echo("  plot_data <- srvyr::as_survey_design(plot_data)\n");
     echo("}\n");
+
+    // NEW: Apply subset if expression exists
+    if(subset_expr) {
+        echo("plot_data <- subset(plot_data, " + subset_expr + ")\n");
+    }
 
     var trans_mode = getValue("age_trans_mode");
     if (trans_mode != "none") {
