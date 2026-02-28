@@ -62,21 +62,6 @@ function calculate(is_preview){
         return fullName;
     }
 
-    function getCleanArray(id) {
-        var rawValue = getValue(id);
-        if (!rawValue) return [];
-        var raw = rawValue.split(/\n/).filter(function(s){return s != ""});
-        return raw.map(function(item) {
-            var lastBracketPos = item.lastIndexOf("[[");
-            if (lastBracketPos > -1) {
-                var lastPart = item.substring(lastBracketPos);
-                var match = lastPart.match(/\[\[\"(.*?)\"\]\]/);
-                if (match) { return match[1]; }
-            }
-            return item.indexOf("$") > -1 ? item.substring(item.lastIndexOf("$") + 1) : item;
-        });
-    }
-
     function getThemeCode() {
         var txt_size = getValue("theme_base_size");
         var leg_pos = getValue("theme_legend_pos");
@@ -94,20 +79,17 @@ function calculate(is_preview){
         code += " + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = " + x_ang + "), axis.text.y = ggplot2::element_text(angle = " + y_ang + "))";
         return code;
     }
-
-    function getSafeColor(id, defaultVal) {
-        var c = getValue(id);
-        if (!c || c === "") return defaultVal;
-        return c;
-    }
   
     var data = getValue("pyr_data");
-    var subset_expr = getValue("pyr_subset"); // Get subset string
+    var subset_expr = getValue("pyr_subset");
     var age_col = getColumnName(getValue("pyr_age"));
     var split = getColumnName(getValue("pyr_split"));
     var stack = getColumnName(getValue("pyr_stack"));
     var bin_w = getValue("bin_width");
+    var bin_start = getValue("bin_start"); // NEW
+    var drop_lvls = getValue("drop_levels"); // NEW
     var prop = (getValue("pyr_prop") == "1" ? "TRUE" : "FALSE");
+    var symmetric = (getValue("pyr_sym") == "1");
 
     if (getValue("lonely_psu") == "adjust") {
         echo("options(survey.lonely.psu = \"adjust\")\n");
@@ -120,7 +102,6 @@ function calculate(is_preview){
     echo("  plot_data <- srvyr::as_survey_design(plot_data)\n");
     echo("}\n");
 
-    // NEW: Apply subset if expression exists
     if(subset_expr) {
         echo("plot_data <- subset(plot_data, " + subset_expr + ")\n");
     }
@@ -128,12 +109,22 @@ function calculate(is_preview){
     var trans_mode = getValue("age_trans_mode");
     if (trans_mode != "none") {
         echo("v_raw <- if(inherits(plot_data, \"survey.design\")) plot_data$variables[[\"" + age_col + "\"]] else plot_data[[\"" + age_col + "\"]]\n");
-        var trans_cmd = (trans_mode == "factor") ? "as.factor(v_raw)" : "cut(v_raw, breaks = seq(0, max(v_raw, na.rm=TRUE) + " + bin_w + ", " + bin_w + "), right = FALSE)";
+        // MODIFIED: Use bin_start in seq()
+        var trans_cmd = (trans_mode == "factor") ? "as.factor(v_raw)" : "cut(v_raw, breaks = seq(" + bin_start + ", max(v_raw, na.rm=TRUE) + " + bin_w + ", " + bin_w + "), right = FALSE)";
         echo("if(inherits(plot_data, \"survey.design\")) {\n");
         echo("  plot_data$variables[[\"" + age_col + "\"]] <- " + trans_cmd + "\n");
         echo("} else {\n");
         echo("  plot_data[[\"" + age_col + "\"]] <- " + trans_cmd + "\n");
         echo("}\n");
+    }
+
+    // NEW: Logic to drop unused levels (fix empty bars)
+    if (drop_lvls == "1") {
+       echo("if(inherits(plot_data, \"survey.design\")) {\n");
+       echo("  plot_data <- update(plot_data, " + age_col + " = droplevels(" + age_col + "))\n");
+       echo("} else {\n");
+       echo("  plot_data[[\"" + age_col + "\"]] <- droplevels(as.factor(plot_data[[\"" + age_col + "\"]]))\n");
+       echo("}\n");
     }
 
     if (getValue("pyr_narm") == "1") {
@@ -159,6 +150,12 @@ function calculate(is_preview){
     echo("  p <- apyramid::age_pyramid(data = tab, age_group = \"" + age_col + "\", split_by = \"" + split + "\", count = \"Freq\", proportional = FALSE, show_midpoint = " + (getValue("pyr_mid") == "1" ? "TRUE" : "FALSE"));
     if (stack != "NULL" && stack != "") echo(", stack_by = \"" + stack + "\"");
     echo(")\n");
+
+    if (symmetric) {
+        echo("  max_val <- max(tab$Freq, na.rm = TRUE) * 1.05\n");
+        echo("  p <- p + ggplot2::expand_limits(y = c(-max_val, max_val))\n");
+    }
+
     echo("} else {\n");
 
     if (lbl_wrap > 0) {
@@ -169,6 +166,18 @@ function calculate(is_preview){
     echo("  p <- apyramid::age_pyramid(data = plot_data, age_group = \"" + age_col + "\", split_by = \"" + split + "\", proportional = " + prop + ", show_midpoint = " + (getValue("pyr_mid") == "1" ? "TRUE" : "FALSE"));
     if (stack != "NULL" && stack != "") echo(", stack_by = \"" + stack + "\"");
     echo(")\n");
+
+    if (symmetric) {
+        echo("  # Calculate limit for symmetry\n");
+        if(prop == "TRUE") {
+             echo("  p <- p + ggplot2::expand_limits(y = c(-0.55, 0.55)) # Rough default for proportions\n");
+        } else {
+             echo("  agg <- aggregate(plot_data[[1]], by=list(plot_data[[\"" + split + "\"]], plot_data[[\"" + age_col + "\"]]), FUN=length)\n");
+             echo("  max_val <- max(agg$x, na.rm=TRUE) * 1.05\n");
+             echo("  p <- p + ggplot2::expand_limits(y = c(-max_val, max_val))\n");
+        }
+    }
+
     echo("}\n");
 
     var labs_list = [];

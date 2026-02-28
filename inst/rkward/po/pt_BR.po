@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: rk.apyramid 0.1.2\n"
+"Project-Id-Version: rk.apyramid 0.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-27 13:00+0000\n"
 "PO-Revision-Date: 2026-02-27 13:05-0300\n"
@@ -20,6 +20,15 @@ msgstr "Gera pirâmides etárias ponderadas para Data Frames e objetos de Pesqui
 
 msgid "Calculates weighted counts or proportions. Automatically simplifies large numbers (e.g., 6,000,000 to 6M) and removes negative signs from labels."
 msgstr "Calcula contagens ou proporções ponderadas. Simplifica automaticamente números grandes (ex: 6.000.000 para 6M) e remove sinais negativos dos rótulos."
+
+msgid "Center Pyramid (Symmetric Axes)"
+msgstr "Centralizar Pirâmide (Eixos Simétricos)"
+
+msgid "Start Bins at (Age)"
+msgstr "Iniciar Intervalos em (Idade)"
+
+msgid "Drop unused Age levels"
+msgstr "Remover níveis de idade não utilizados"
 
 msgid "Age Pyramid"
 msgstr "Pirâmide Etária"

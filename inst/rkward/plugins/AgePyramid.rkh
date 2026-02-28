@@ -31,6 +31,10 @@
 		</setting>
 		<setting id="bin_width">
 		</setting>
+		<setting id="bin_start">
+		</setting>
+		<setting id="drop_levels">
+		</setting>
 		<setting id="pyr_split">
 		</setting>
 		<setting id="pyr_stack">
@@ -41,6 +45,8 @@
 		<setting id="pyr_narm">
 		</setting>
 		<setting id="pyr_mid">
+		</setting>
+		<setting id="pyr_sym">
 		</setting>
 		<caption id="frm_SrvyStts" />
 		<setting id="lonely_psu">

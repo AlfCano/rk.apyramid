@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: rk.apyramid 0.1.2\n"
+"Project-Id-Version: rk.apyramid 0.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-27 13:00+0000\n"
 "PO-Revision-Date: 2026-02-27 13:05+0100\n"
@@ -20,6 +20,15 @@ msgstr "Génère des pyramides des âges pondérées pour Data Frames et objets 
 
 msgid "Calculates weighted counts or proportions. Automatically simplifies large numbers (e.g., 6,000,000 to 6M) and removes negative signs from labels."
 msgstr "Calcule des effectifs ou proportions pondérés. Simplifie automatiquement les grands nombres (ex. 6 000 000 en 6M) et supprime les signes négatifs des étiquettes."
+
+msgid "Center Pyramid (Symmetric Axes)"
+msgstr "Centrer la pyramide (Axes symétriques)"
+
+msgid "Start Bins at (Age)"
+msgstr "Démarrer les intervalles à (Âge)"
+
+msgid "Drop unused Age levels"
+msgstr "Supprimer les niveaux d'âge inutilisés"
 
 msgid "Age Pyramid"
 msgstr "Pyramide des âges"

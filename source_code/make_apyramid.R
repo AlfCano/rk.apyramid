@@ -6,7 +6,7 @@ local({
   rkwarddev.required("0.08-1")
 
   plugin_name <- "rk.apyramid"
-  plugin_ver <- "0.1.2" # Bumped version for new feature
+  plugin_ver <- "0.1.3"
 
   package_about <- rk.XML.about(
     name = plugin_name,
@@ -25,7 +25,7 @@ local({
   )
 
   # =========================================================================================
-  # 2. Shared Helpers (Strictly NO internal comments)
+  # 2. Shared Helpers
   # =========================================================================================
 
   js_helpers <- '
@@ -39,21 +39,6 @@ local({
         }
         if (fullName.indexOf("$") > -1) return fullName.substring(fullName.lastIndexOf("$") + 1);
         return fullName;
-    }
-
-    function getCleanArray(id) {
-        var rawValue = getValue(id);
-        if (!rawValue) return [];
-        var raw = rawValue.split(/\\n/).filter(function(s){return s != ""});
-        return raw.map(function(item) {
-            var lastBracketPos = item.lastIndexOf("[[");
-            if (lastBracketPos > -1) {
-                var lastPart = item.substring(lastBracketPos);
-                var match = lastPart.match(/\\[\\[\\"(.*?)\\"\\]\\]/);
-                if (match) { return match[1]; }
-            }
-            return item.indexOf("$") > -1 ? item.substring(item.lastIndexOf("$") + 1) : item;
-        });
     }
 
     function getThemeCode() {
@@ -72,12 +57,6 @@ local({
         code += " + ggplot2::theme(axis.title.y = ggplot2::element_text(angle = " + y_t_ang + ", vjust = " + y_vjust + ", hjust = " + y_hjust + ", color = \\"gray40\\"), axis.title.x = ggplot2::element_text(angle = " + x_t_ang + ", hjust = 0, color = \\"gray40\\"))";
         code += " + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = " + x_ang + "), axis.text.y = ggplot2::element_text(angle = " + y_ang + "))";
         return code;
-    }
-
-    function getSafeColor(id, defaultVal) {
-        var c = getValue(id);
-        if (!c || c === "") return defaultVal;
-        return c;
     }
   '
 
@@ -145,8 +124,6 @@ local({
   pyr_age <- rk.XML.varslot(label = "Age Variable", source = "pyr_selector", required = TRUE, id.name = "pyr_age")
   pyr_split <- rk.XML.varslot(label = "Split by (Sex)", source = "pyr_selector", required = TRUE, id.name = "pyr_split")
   pyr_stack <- rk.XML.varslot(label = "Stack Variable (Optional)", source = "pyr_selector", id.name = "pyr_stack")
-
-  # NEW: Subset input
   pyr_subset <- rk.XML.input(label = "Subset Expression (e.g. region == 'North')", id.name = "pyr_subset")
 
   pyr_dialog <- rk.XML.dialog(label = "SWD Age Pyramid", child = rk.XML.row(
@@ -155,7 +132,7 @@ local({
           rk.XML.tabbook(tabs = list(
               "Variables" = rk.XML.col(
                   pyr_data,
-                  pyr_subset, # Added here
+                  pyr_subset,
                   pyr_age,
                   rk.XML.frame(label = "Age Processing",
                       rk.XML.radio(label = "Mode", id.name = "age_trans_mode", options = list(
@@ -163,7 +140,12 @@ local({
                           "Convert to Factor" = list(val = "factor"),
                           "Bin Numeric Variable" = list(val = "bin")
                       )),
-                      rk.XML.spinbox(label = "Bin Width (Years)", id.name = "bin_width", min = 1, max = 100, initial = 5)
+                      # MODIFIED: Added bin start and drop levels
+                      rk.XML.row(
+                        rk.XML.spinbox(label = "Bin Width (Years)", id.name = "bin_width", min = 1, max = 100, initial = 5),
+                        rk.XML.spinbox(label = "Start Bins at (Age)", id.name = "bin_start", min = 0, max = 100, initial = 0)
+                      ),
+                      rk.XML.cbox(label = "Drop unused Age levels", id.name = "drop_levels", value = "1", chk = TRUE)
                   ),
                   pyr_split, pyr_stack
               ),
@@ -171,6 +153,7 @@ local({
                   rk.XML.cbox(label = "Show Proportions (%)", value = "1", id.name = "pyr_prop"),
                   rk.XML.cbox(label = "Remove NA values", value = "1", chk = TRUE, id.name = "pyr_narm"),
                   rk.XML.cbox(label = "Show Midpoint lines", value = "1", id.name = "pyr_mid"),
+                  rk.XML.cbox(label = "Center Pyramid (Symmetric Axes)", value = "1", chk = TRUE, id.name = "pyr_sym"),
                   rk.XML.frame(label = "Survey Statistics",
                       rk.XML.cbox(label = "Adjust for lonely PSUs", value = "adjust", chk = FALSE, id.name = "lonely_psu")
                   )
@@ -190,12 +173,15 @@ local({
 
   js_calc_pyr <- paste0(js_helpers, '
     var data = getValue("pyr_data");
-    var subset_expr = getValue("pyr_subset"); // Get subset string
+    var subset_expr = getValue("pyr_subset");
     var age_col = getColumnName(getValue("pyr_age"));
     var split = getColumnName(getValue("pyr_split"));
     var stack = getColumnName(getValue("pyr_stack"));
     var bin_w = getValue("bin_width");
+    var bin_start = getValue("bin_start"); // NEW
+    var drop_lvls = getValue("drop_levels"); // NEW
     var prop = (getValue("pyr_prop") == "1" ? "TRUE" : "FALSE");
+    var symmetric = (getValue("pyr_sym") == "1");
 
     if (getValue("lonely_psu") == "adjust") {
         echo("options(survey.lonely.psu = \\"adjust\\")\\n");
@@ -208,7 +194,6 @@ local({
     echo("  plot_data <- srvyr::as_survey_design(plot_data)\\n");
     echo("}\\n");
 
-    // NEW: Apply subset if expression exists
     if(subset_expr) {
         echo("plot_data <- subset(plot_data, " + subset_expr + ")\\n");
     }
@@ -216,12 +201,22 @@ local({
     var trans_mode = getValue("age_trans_mode");
     if (trans_mode != "none") {
         echo("v_raw <- if(inherits(plot_data, \\"survey.design\\")) plot_data$variables[[\\"" + age_col + "\\"]] else plot_data[[\\"" + age_col + "\\"]]\\n");
-        var trans_cmd = (trans_mode == "factor") ? "as.factor(v_raw)" : "cut(v_raw, breaks = seq(0, max(v_raw, na.rm=TRUE) + " + bin_w + ", " + bin_w + "), right = FALSE)";
+        // MODIFIED: Use bin_start in seq()
+        var trans_cmd = (trans_mode == "factor") ? "as.factor(v_raw)" : "cut(v_raw, breaks = seq(" + bin_start + ", max(v_raw, na.rm=TRUE) + " + bin_w + ", " + bin_w + "), right = FALSE)";
         echo("if(inherits(plot_data, \\"survey.design\\")) {\\n");
         echo("  plot_data$variables[[\\"" + age_col + "\\"]] <- " + trans_cmd + "\\n");
         echo("} else {\\n");
         echo("  plot_data[[\\"" + age_col + "\\"]] <- " + trans_cmd + "\\n");
         echo("}\\n");
+    }
+
+    // NEW: Logic to drop unused levels (fix empty bars)
+    if (drop_lvls == "1") {
+       echo("if(inherits(plot_data, \\"survey.design\\")) {\\n");
+       echo("  plot_data <- update(plot_data, " + age_col + " = droplevels(" + age_col + "))\\n");
+       echo("} else {\\n");
+       echo("  plot_data[[\\"" + age_col + "\\"]] <- droplevels(as.factor(plot_data[[\\"" + age_col + "\\"]]))\\n");
+       echo("}\\n");
     }
 
     if (getValue("pyr_narm") == "1") {
@@ -247,6 +242,12 @@ local({
     echo("  p <- apyramid::age_pyramid(data = tab, age_group = \\"" + age_col + "\\", split_by = \\"" + split + "\\", count = \\"Freq\\", proportional = FALSE, show_midpoint = " + (getValue("pyr_mid") == "1" ? "TRUE" : "FALSE"));
     if (stack != "NULL" && stack != "") echo(", stack_by = \\"" + stack + "\\"");
     echo(")\\n");
+
+    if (symmetric) {
+        echo("  max_val <- max(tab$Freq, na.rm = TRUE) * 1.05\\n");
+        echo("  p <- p + ggplot2::expand_limits(y = c(-max_val, max_val))\\n");
+    }
+
     echo("} else {\\n");
 
     if (lbl_wrap > 0) {
@@ -257,6 +258,18 @@ local({
     echo("  p <- apyramid::age_pyramid(data = plot_data, age_group = \\"" + age_col + "\\", split_by = \\"" + split + "\\", proportional = " + prop + ", show_midpoint = " + (getValue("pyr_mid") == "1" ? "TRUE" : "FALSE"));
     if (stack != "NULL" && stack != "") echo(", stack_by = \\"" + stack + "\\"");
     echo(")\\n");
+
+    if (symmetric) {
+        echo("  # Calculate limit for symmetry\\n");
+        if(prop == "TRUE") {
+             echo("  p <- p + ggplot2::expand_limits(y = c(-0.55, 0.55)) # Rough default for proportions\\n");
+        } else {
+             echo("  agg <- aggregate(plot_data[[1]], by=list(plot_data[[\\"" + split + "\\"]], plot_data[[\\"" + age_col + "\\"]]), FUN=length)\\n");
+             echo("  max_val <- max(agg$x, na.rm=TRUE) * 1.05\\n");
+             echo("  p <- p + ggplot2::expand_limits(y = c(-max_val, max_val))\\n");
+        }
+    }
+
     echo("}\\n");
 
     var labs_list = [];
@@ -327,5 +340,5 @@ local({
     create = c("pmap", "xml", "js", "desc", "rkh"),
     load = TRUE, overwrite = TRUE, show = FALSE
   )
-    cat("\nPlugin 'rk.apyramid' (v0.1.2) generated successfully.\n")
+    cat("\nPlugin 'rk.apyramid' (v0.1.3) generated successfully.\n")
 })

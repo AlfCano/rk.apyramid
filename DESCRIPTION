@@ -2,7 +2,7 @@ Package: rk.apyramid
 Type: Package
 Title: High-performance Age pyramids for Data Frames and Survey objects
         using SWD principles.
-Version: 0.1.2
+Version: 0.1.3
 Date: 2026-02-27
 Author: Alfonso Cano
 Maintainer: Alfonso Cano <alfonso.cano@correo.buap.mx>

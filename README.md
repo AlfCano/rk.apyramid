@@ -1,48 +1,37 @@
 # rk.apyramid: High-Impact Age Pyramids for RKWard
 
-![Version](https://img.shields.io/badge/Version-0.1.2-blue.svg)
+![Version](https://img.shields.io/badge/Version-0.1.3-blue.svg)
 ![License](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![RKWard](https://img.shields.io/badge/Platform-RKWard-green)
 [![R Linter](https://github.com/AlfCano/rk.apyramid/actions/workflows/lintr.yml/badge.svg)](https://github.com/AlfCano/rk.apyramid/actions/workflows/lintr.yml)
 
 **rk.apyramid** provides a high-performance graphical interface for the `{apyramid}` package within RKWard, enhanced with Cole Nussbaumer Knaflic's *"Storytelling with Data" (SWD)* principles. It allows users to create publication-quality age pyramids from standard data frames, complex survey objects (`survey`), and `srvyr` (`tbl_svy`) objects with instant execution even on large datasets.
 
-## 🚀 What's New in Version 0.1.2
+## 🚀 What's New in Version 0.1.3
 
-*   **Dynamic Subsetting:** Added a **"Subset Expression"** field in the Variables tab. You can now filter your data (e.g., `region == 'North'` or `year == 2025`) directly within the plugin dialog. This is applied dynamically before plotting, saving you from creating multiple temporary filtered objects in your workspace.
+*   **Symmetric Axes (Centering Fix):** Added a **"Center Pyramid"** option. By default, charts now force the axes to be symmetric based on the largest group. This prevents label truncation when comparing highly unbalanced populations (e.g., a male-dominated industry vs. a small female workforce).
+*   **Cleaner Subsets:**
+    *   **Start Bins at:** You can now define the starting age for automatic binning (e.g., start at 15). This eliminates empty bars at the bottom when plotting labor force data (15+).
+    *   **Drop Unused Levels:** Automatically removes empty age factor levels, ensuring the chart only displays relevant categories.
 
-## What's New in Version 0.1.1
+## What's New in Version 0.1.2
 
-This release focused on performance, professional aesthetics, and robust handling of weighted survey data.
+*   **Dynamic Subsetting:** Added a **"Subset Expression"** field in the Variables tab. You can now filter your data (e.g., `region == 'North'` or `age >= 15`) directly within the plugin dialog before plotting.
 
-*   **High-Speed Survey Engine:** Re-engineered to use `survey::svytable` for internal aggregation. This ensures near-instant plot generation for large-scale microdata (like ENOE).
-*   **srvyr Support:** Native support for `srvyr` objects. The plugin automatically detects `tbl_svy` classes and handles weighted estimation seamlessly.
-*   **SWD Aesthetic Standards:**
-    *   **Horizontal Y-Axis Titles:** Positioned at the top-left to reduce reader head-tilt.
-    *   **Capped Axes:** Uses the `lemon` package to clip axis lines exactly to the data range.
-    *   **Absolute Value Labels:** Fixed the "negative sign" artifact; labels now show absolute positive values/percentages on both sides.
-*   **Smart Units:** Automatically simplifies large population numbers (e.g., `6,000,000` -> `6M`) using the `scales` package.
-*   **Lonely PSU Fix:** Added a toggle to automatically apply `options(survey.lonely.psu="adjust")`.
-
-### 🌍 Internationalization
-The interface is fully localized in:
-*   🇺🇸 English (Default)
-*   🇪🇸 Spanish (`es`)
-*   🇫🇷 French (`fr`)
-*   🇩🇪 German (`de`)
-*   🇧🇷 Portuguese (Brazil) (`pt_BR`)
-
-## ✨ Features
+## Features
 
 ### Data Handling
 *   **Triple Input Mode:** Works seamlessly with `data.frame`, `survey.design`, and `srvyr` objects.
-*   **On-the-fly Binning:** Automatically `cut()` numeric age variables into custom intervals (e.g., 5-year cohorts) directly within the dialog.
+*   **Smart Binning:** Automatically `cut()` numeric age variables into custom intervals (e.g., 5-year cohorts).
+    *   *New:* Define custom start points and remove empty levels on the fly.
 *   **Pre-processing Filter:** Optional R expression to subset data before aggregation.
 
 ### Visualization & Layout
 *   **Stacked Pyramids:** Supports secondary grouping (e.g., Type of Employment) within the age bars.
+*   **Symmetric Layouts:** Forces the "zero" line to stay centered even if one side is significantly larger than the other.
 *   **Proportions vs. Counts:** Toggle between distribution percentages or raw weighted totals.
 *   **Legend Control:** Precision side-by-side wrapping for both Legend Titles and individual labels to ensure the legend fits the plot margin.
+*   **SWD Aesthetics:** Horizontal Y-axis titles, capped axes (`lemon`), and smart unit formatting (e.g., `6M` instead of `6,000,000`).
 
 ## 📦 Installation
 
@@ -69,10 +58,12 @@ Once installed, the plugin is organized under:
 **`Survey` -> `Graphs` -> `Age Pyramid`**
 
 1.  Select your data object (Dataframe, Survey, or srvyr).
-2.  (Optional) Enter a **Subset Expression** to filter specific populations.
+2.  (Optional) Enter a **Subset Expression** (e.g., `age >= 15`).
 3.  Select the **Age** variable and the **Split** variable (e.g., Sex).
-4.  Choose **Age Variable Processing** (Binning is recommended for raw numeric age).
-5.  Configure **Highlighting** and **Theme** options in the respective tabs.
+4.  Configure **Age Processing**:
+    *   Set **Bin Width** (e.g., 5 years).
+    *   Set **Start Bins at** (e.g., 15) to match your subset.
+5.  Configure **Settings**: Check "Center Pyramid" to ensure labels aren't cut off.
 6.  Click **Submit**.
 
 ## 🛠️ Dependencies

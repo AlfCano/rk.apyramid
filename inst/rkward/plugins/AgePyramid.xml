@@ -34,7 +34,11 @@
 									<option label="Convert to Factor" value="factor" />
 									<option label="Bin Numeric Variable" value="bin" />
 								</radio>
-								<spinbox label="Bin Width (Years)" id="bin_width" initial="5" min="1" max="100" />
+								<row id="row_sBWY51100S">
+									<spinbox label="Bin Width (Years)" id="bin_width" initial="5" min="1" max="100" />
+									<spinbox label="Start Bins at (Age)" id="bin_start" min="0" max="100" />
+								</row>
+								<checkbox id="drop_levels" label="Drop unused Age levels" value="1" checked="true" />
 							</frame>
 							<varslot id="pyr_split" label="Split by (Sex)" source="pyr_selector" required="true" />
 							<varslot id="pyr_stack" label="Stack Variable (Optional)" source="pyr_selector" />
@@ -45,6 +49,7 @@
 							<checkbox id="pyr_prop" label="Show Proportions (%)" value="1" />
 							<checkbox id="pyr_narm" label="Remove NA values" value="1" checked="true" />
 							<checkbox id="pyr_mid" label="Show Midpoint lines" value="1" />
+							<checkbox id="pyr_sym" label="Center Pyramid (Symmetric Axes)" value="1" checked="true" />
 							<frame label="Survey Statistics" id="frm_SrvyStts">
 								<checkbox id="lonely_psu" label="Adjust for lonely PSUs" value="adjust" />
 							</frame>

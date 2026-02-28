@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: rk.apyramid 0.1.2\n"
+"Project-Id-Version: rk.apyramid 0.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-27 13:00+0000\n"
 "PO-Revision-Date: 2026-02-27 13:05-0600\n"
@@ -23,6 +23,15 @@ msgstr "Calcula conteos o proporciones ponderadas. Simplifica automáticamente n
 
 msgid "Age Pyramid"
 msgstr "Pirámide de Edad"
+
+msgid "Center Pyramid (Symmetric Axes)"
+msgstr "Centrar Pirámide (Ejes Simétricos)"
+
+msgid "Start Bins at (Age)"
+msgstr "Iniciar intervalos en (Edad)"
+
+msgid "Drop unused Age levels"
+msgstr "Eliminar niveles de edad no utilizados"
 
 msgid "Survey"
 msgstr "Encuesta"
